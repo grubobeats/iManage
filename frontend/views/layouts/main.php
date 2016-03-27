@@ -72,7 +72,7 @@ AppAsset::register($this);
     <div class="container">
         <p class="pull-left">&copy; iManage.ru <?= date('Y') ?></p>
 
-        <p class="pull-right">Developed by <a href="http://www.exelerothemes.com">Exelero themes</a></p>
+        <p class="pull-right">Developed by <a href="http://www.givemejobtoday.com">Vladan Paunovic</a></p>
     </div>
 </footer>
 

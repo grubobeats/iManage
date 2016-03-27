@@ -2,7 +2,7 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'iManage: #1 online construction managing tool';
 ?>
 <div class="site-index">
 
