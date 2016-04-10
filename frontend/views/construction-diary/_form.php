@@ -13,7 +13,7 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="construction-diary-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     
 
@@ -50,7 +50,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'issues')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
 
     <?= $form->field($model, 'workers')->textInput(['maxlength' => true]) ?>
 

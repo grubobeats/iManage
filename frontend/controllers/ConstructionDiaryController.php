@@ -8,6 +8,7 @@ use frontend\models\ConstructionDiarySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 
 
@@ -65,6 +66,15 @@ class ConstructionDiaryController extends Controller
         $model = new ConstructionDiary();
 
         if ($model->load(Yii::$app->request->post())) {
+            // get the instance of the uploaded file
+            $imageName = $model->csite_name;
+            $model->file = UploadedFile::getInstance($model, 'image');
+            $model->file->saveAs( 'uploads/' . $imageName . '.' . $model->file->extension );
+
+            // save the path in to Database
+            $model->image = 'uploads/' . $imageName . "." . $model->file->extension;
+
+
             $model->user_id = Yii::$app->user->getId();
             $model->save();
             return $this->redirect(['view', 'id' => $model->csdiary_id]);

@@ -29,6 +29,8 @@ class ConstructionDiary extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $file;
+
     public static function tableName()
     {
         return 'construction_diary';
@@ -42,6 +44,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
         return [
             [['user_id', 'csite_id', 'csite_name', 'weather', 'temperature', 'description'], 'required'],
             [['user_id', 'csite_id'], 'integer'],
+            [['file'], 'file'],
             [['description', 'issues'], 'string'],
             [['csite_name', 'weather', 'temperature', 'image', 'workers', 'date'], 'string', 'max' => 255]
         ];
