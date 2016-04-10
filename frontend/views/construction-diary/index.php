@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use dosamigos\datepicker\DatePicker;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\ConstructionDiarySearch */
@@ -19,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Construction Diary', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <? Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -37,10 +40,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'workers',
             // 'extra1',
             // 'extra2',
-            'date',
+            [
+                'attribute'=>'date',
+                'value'=>'date',
+                'format'=>'raw',
+                'contentOptions'=>['style'=>'width: 100px;'],
+                'filter'=>DatePicker::widget([
+                    'model' => $searchModel,
+                    'attribute' => 'date',
+                        'clientOptions' => [
+                            'autoclose' => true,
+                            'format' => 'yyyy-m-d'
+                        ]
+                ]),
+            ],
+            //'date',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <? Pjax::end(); ?>
 
 </div>
