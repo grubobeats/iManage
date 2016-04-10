@@ -10,9 +10,15 @@ use Yii;
  */
 class SignupForm extends Model
 {
+    public $first_name;
+    public $last_name;
+    public $job_position;
     public $username;
     public $email;
     public $password;
+
+    public $country;
+    public $city;
 
     /**
      * @inheritdoc
@@ -22,6 +28,14 @@ class SignupForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
+            ['first_name', 'required'],
+            ['last_name', 'required'],
+            ['country', 'required'],
+            ['city', 'required'],
+            ['job_position', 'required'],
+
+
+
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
@@ -48,6 +62,11 @@ class SignupForm extends Model
         }
         
         $user = new User();
+        $user->first_name = $this->first_name;
+        $user->last_name = $this->last_name;
+        $user->job_position = $this->job_position;
+        $user->country = $this->country;
+        $user->city = $this->city;
         $user->username = $this->username;
         $user->email = $this->email;
         $user->setPassword($this->password);
