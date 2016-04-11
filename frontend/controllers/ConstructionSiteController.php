@@ -8,6 +8,7 @@ use frontend\models\ConstructionSiteSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 /**
  * ConstructionSiteController implements the CRUD actions for ConstructionSite model.
@@ -32,8 +33,17 @@ class ConstructionSiteController extends Controller
      */
     public function actionIndex()
     {
+        $user_id = "";
+        if (Yii::$app->user->getId()) { $user_id .= Yii::$app->user->getId(); } else { $user_id .= 0; }
+
         $searchModel = new ConstructionSiteSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(\yii\helpers\ArrayHelper::merge(
+            Yii::$app->request->queryParams,
+            [$searchModel->formName() => ['user_id' => $user_id]]
+        ));
+
+
 
         return $this->render('index', [
             'searchModel' => $searchModel,

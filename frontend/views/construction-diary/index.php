@@ -14,51 +14,69 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="construction-diary-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php
+    if (Yii::$app->user->getId()) { 
+    ?>
 
-    <p>
-        <?= Html::a('Create Construction Diary', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
-    <? Pjax::begin(); ?>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
-            //'csdiary_id',
-            //'user_id',
-            //'csite_id',
-            'csite_name',
-            'weather',
-            // 'temperature',
-            // 'description:ntext',
-            // 'issues:ntext',
-            // 'image',
-            'workers',
-            // 'extra1',
-            // 'extra2',
-            [
-                'attribute'=>'date',
-                'value'=>'date',
-                'format'=>'raw',
-                'contentOptions'=>['style'=>'width: 100px;'],
-                'filter'=>DatePicker::widget([
-                    'model' => $searchModel,
-                    'attribute' => 'date',
-                        'clientOptions' => [
-                            'autoclose' => true,
-                            'format' => 'yyyy-m-d'
-                        ]
-                ]),
+        <h1><?= Html::encode($this->title) ?></h1>
+        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+        <p>
+            <?= Html::a('Create Construction Diary', ['create'], ['class' => 'btn btn-success']); ?>
+        </p>
+
+        <? Pjax::begin(); ?>
+        <?= GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => [
+                ['class' => 'yii\grid\SerialColumn'],
+
+                //'csdiary_id',
+                //'user_id',
+                //'csite_id',
+                'csite_name',
+                'weather',
+                // 'temperature',
+                // 'description:ntext',
+                // 'issues:ntext',
+                // 'image',
+                'workers',
+                // 'extra1',
+                // 'extra2',
+                [
+                    'attribute'=>'date',
+                    'value'=>'date',
+                    'format'=>'raw',
+                    'contentOptions'=>['style'=>'width: 100px;'],
+                    'filter'=>DatePicker::widget([
+                        'model' => $searchModel,
+                        'attribute' => 'date',
+                            'clientOptions' => [
+                                'autoclose' => true,
+                                'format' => 'yyyy-m-d'
+                            ]
+                    ]),
+                ],
+                //'date',
+
+                ['class' => 'yii\grid\ActionColumn'],
             ],
-            //'date',
+        ]); ?>
+        <? Pjax::end(); ?>
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
-    <? Pjax::end(); ?>
+
+
+    <?php
+    } else { 
+         echo "Please, register or log in.";
+    }
+
+
+    ?>
+    
+
 
 </div>

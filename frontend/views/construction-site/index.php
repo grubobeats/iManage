@@ -11,7 +11,9 @@ $this->title = 'Construction Sites';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="construction-site-index">
-
+    <?php
+    if (Yii::$app->user->getId()) { 
+    ?>
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -37,5 +39,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+    <?php
+} else {
+    echo "Please, register or log in.";
+}
+
+
+    ?>
 
 </div>
