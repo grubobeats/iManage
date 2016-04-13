@@ -19,19 +19,25 @@ use Yii;
  * @property string $workers
  * @property string $extra1
  * @property string $extra2
+ * @property string $extra3
+ * @property string $extra4
+ * @property string $extra5
+ * @property string $extra6
+ * @property string $extra7
+ * @property string $extra8
+ * @property string $extra9
+ * @property string $date
  *
- * @property ConstructionSite $csiteName
  * @property ConstructionSite $user
  * @property ConstructionSite $csite
+ * @property ConstructionSite $csiteName
  */
 class ConstructionDiary extends \yii\db\ActiveRecord
 {
+    public $file;
     /**
      * @inheritdoc
      */
-    public $file;
-    public $extra3;
-
     public static function tableName()
     {
         return 'construction_diary';
@@ -43,11 +49,14 @@ class ConstructionDiary extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'csite_id', 'csite_name', 'weather', 'temperature', 'description'], 'required'],
+            // Vladan, don't forget to fix required fields!
+            [['user_id', 'csite_id'], 'required'],
             [['user_id', 'csite_id'], 'integer'],
-            [['file'], 'file'],
             [['description', 'issues'], 'string'],
-            [['csite_name', 'weather', 'temperature', 'image', 'extra3', 'workers', 'date'], 'string', 'max' => 255]
+            [['date'], 'safe'],
+            [['file'], 'file'],
+            [['csite_name', 'weather', 'temperature', 'image', 'workers', 'extra1', 'extra2'], 'string', 'max' => 255],
+            [['extra3', 'extra4', 'extra5', 'extra6', 'extra7', 'extra8', 'extra9'], 'string', 'max' => 500]
         ];
     }
 
@@ -60,7 +69,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
             'csdiary_id' => 'Csdiary ID',
             'user_id' => 'User ID',
             'csite_id' => 'Csite ID',
-            'csite_name' => 'Construction site',
+            'csite_name' => 'Csite Name',
             'weather' => 'Weather',
             'temperature' => 'Temperature',
             'description' => 'Description',
@@ -70,16 +79,14 @@ class ConstructionDiary extends \yii\db\ActiveRecord
             'extra1' => 'Extra1',
             'extra2' => 'Extra2',
             'extra3' => 'Extra3',
+            'extra4' => 'Extra4',
+            'extra5' => 'Extra5',
+            'extra6' => 'Extra6',
+            'extra7' => 'Extra7',
+            'extra8' => 'Extra8',
+            'extra9' => 'Extra9',
             'date' => 'Date',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCsiteName()
-    {
-        return $this->hasOne(ConstructionSite::className(), ['csite_name' => 'csite_name']);
     }
 
     /**
@@ -96,5 +103,13 @@ class ConstructionDiary extends \yii\db\ActiveRecord
     public function getCsite()
     {
         return $this->hasOne(ConstructionSite::className(), ['csite_id' => 'csite_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCsiteName()
+    {
+        return $this->hasOne(ConstructionSite::className(), ['csite_name' => 'csite_name']);
     }
 }

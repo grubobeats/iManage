@@ -39,6 +39,20 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'extra2') ?>
 
+    <?php // echo $form->field($model, 'extra3') ?>
+
+    <?php // echo $form->field($model, 'extra4') ?>
+
+    <?php // echo $form->field($model, 'extra5') ?>
+
+    <?php // echo $form->field($model, 'extra6') ?>
+
+    <?php // echo $form->field($model, 'extra7') ?>
+
+    <?php // echo $form->field($model, 'extra8') ?>
+
+    <?php // echo $form->field($model, 'extra9') ?>
+
     <?php // echo $form->field($model, 'date') ?>
 
     <div class="form-group">

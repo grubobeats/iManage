@@ -19,7 +19,7 @@ class ConstructionDiarySearch extends ConstructionDiary
     {
         return [
             [['csdiary_id', 'user_id', 'csite_id'], 'integer'],
-            [['csite_name', 'weather', 'temperature', 'description', 'issues', 'image', 'workers', 'extra1', 'extra2', 'extra3', 'date'], 'safe'],
+            [['csite_name', 'weather', 'temperature', 'description', 'issues', 'image', 'workers', 'extra1', 'extra2', 'extra3', 'extra4', 'extra5', 'extra6', 'extra7', 'extra8', 'extra9', 'date'], 'safe'],
         ];
     }
 
@@ -71,7 +71,13 @@ class ConstructionDiarySearch extends ConstructionDiary
             ->andFilterWhere(['like', 'workers', $this->workers])
             ->andFilterWhere(['like', 'extra1', $this->extra1])
             ->andFilterWhere(['like', 'extra2', $this->extra2])
-            ->andFilterWhere(['like', 'extra3', $this->extra3]);
+            ->andFilterWhere(['like', 'extra3', $this->extra3])
+            ->andFilterWhere(['like', 'extra4', $this->extra4])
+            ->andFilterWhere(['like', 'extra5', $this->extra5])
+            ->andFilterWhere(['like', 'extra6', $this->extra6])
+            ->andFilterWhere(['like', 'extra7', $this->extra7])
+            ->andFilterWhere(['like', 'extra8', $this->extra8])
+            ->andFilterWhere(['like', 'extra9', $this->extra9]);
 
         return $dataProvider;
     }
