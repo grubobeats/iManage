@@ -73,15 +73,34 @@ class ConstructionDiaryController extends Controller
     {
         $model = new ConstructionDiary();
 
+        $uniq_id = uniqid() . uniqid();
+
         if ($model->load(Yii::$app->request->post())) {
             // get the instance of the uploaded file
             $imageName = $model->csite_name;
+            // First image
             $model->file = UploadedFile::getInstance($model, 'image');
-            $model->file->saveAs( 'uploads/' . $imageName . '.' . $model->file->extension );
-
+            $model->file->saveAs( 'uploads/' . $uniq_id . '1.' . $model->file->extension );
             // save the path in to Database
-            $model->image = 'uploads/' . $imageName . "." . $model->file->extension;
+            $model->image = 'uploads/' . $uniq_id . "1." . $model->file->extension;
+            
+            // Second image
+            $model->file = UploadedFile::getInstance($model, 'extra1');
+            $model->file->saveAs( 'uploads/' . $uniq_id . '2.' . $model->file->extension );
+            // save the path in to Database
+            $model->extra1 = 'uploads/' . $uniq_id . "2." . $model->file->extension;
 
+            // Third image
+            $model->file = UploadedFile::getInstance($model, 'extra2');
+            $model->file->saveAs( 'uploads/' . $uniq_id . '3.' . $model->file->extension );
+            // save the path in to Database
+            $model->extra2 = 'uploads/' . $uniq_id . "3." . $model->file->extension;
+
+            // Fourth image
+            $model->file = UploadedFile::getInstance($model, 'extra3');
+            $model->file->saveAs( 'uploads/' . $uniq_id . '4.' . $model->file->extension );
+            // save the path in to Database
+            $model->extra3 = 'uploads/' . $uniq_id . "4." . $model->file->extension;
 
             $model->user_id = Yii::$app->user->getId();
             $model->save();

@@ -27,7 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a('Create Construction Diary', ['create'], ['class' => 'btn btn-success']); ?>
         </p>
 
-        <? Pjax::begin(); ?>
+        <?php Pjax::begin(); ?>
+
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
@@ -69,9 +70,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
+
+
     <?php
     } else { 
-         echo "Please, register or log in.";
+        echo "Please, register or log in.";
     }
 
 

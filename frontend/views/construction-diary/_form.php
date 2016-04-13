@@ -64,14 +64,12 @@ use dosamigos\datepicker\DatePicker;
             <?= $form->field($model, 'issues')->textarea(['rows' => 6]) ?>
         </div>
     </div>
-
-    
-
-    
-
     
 
     <?= $form->field($model, 'image')->fileInput() ?>
+    <?= $form->field($model, 'extra1')->fileInput() ?>
+    <?= $form->field($model, 'extra2')->fileInput() ?>
+    <?= $form->field($model, 'extra3')->fileInput() ?>
 
     <?= $form->field($model, 'workers')->textInput(['maxlength' => true]) ?>
 

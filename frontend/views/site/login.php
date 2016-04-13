@@ -11,8 +11,6 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    
-
     <div class="row">
         <div class="col-lg-4">
         </div>

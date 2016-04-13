@@ -30,6 +30,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
      * @inheritdoc
      */
     public $file;
+    public $extra3;
 
     public static function tableName()
     {
@@ -46,7 +47,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
             [['user_id', 'csite_id'], 'integer'],
             [['file'], 'file'],
             [['description', 'issues'], 'string'],
-            [['csite_name', 'weather', 'temperature', 'image', 'workers', 'date'], 'string', 'max' => 255]
+            [['csite_name', 'weather', 'temperature', 'image', 'extra3', 'workers', 'date'], 'string', 'max' => 255]
         ];
     }
 
@@ -68,6 +69,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
             'workers' => 'Workers',
             'extra1' => 'Extra1',
             'extra2' => 'Extra2',
+            'extra3' => 'Extra3',
             'date' => 'Date',
         ];
     }
