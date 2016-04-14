@@ -40,10 +40,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'workers',
             'image',
             'extra1',
-            'extra2',
+            [
+                'attribute'=>'extra2',
+                'format'=>'raw',
+                'value'=>Html::img($model->extra2, [ 'id' => "image_2", 'alt' => 'This is alt','width' => '150', 'vladan' => '123']),
+            ],
             'extra3',
+
         ],
-        
+
     ]) ?>
 
     <?= DetailView::widget(['model' => $model, 'attributes' => ['extra3',],]) ?>
