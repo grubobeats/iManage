@@ -12,7 +12,6 @@ use yii\web\UploadedFile;
 use yii\data\ActiveDataProvider;
 
 
-
 /**
  * ConstructionDiaryController implements the CRUD actions for ConstructionDiary model.
  */
@@ -79,31 +78,18 @@ class ConstructionDiaryController extends Controller
             // get the instance of the uploaded file
             $imageName = $model->csite_name;
             // First image
-            $model->file = UploadedFile::getInstance($model, 'image');
-            $model->file->saveAs( 'uploads/' . $uniq_id . '1.' . $model->file->extension );
-            // save the path in to Database
-            $model->image = 'uploads/' . $uniq_id . "1." . $model->file->extension;
+            $model->imageFiles = UploadedFile::getInstances($model, 'imageFiles');
+            if ($model->upload()) {
+                //$model->image = "Uploaded";
+                $model->image = $model->uploadedImagesPath();
+            } else {
+                $model->image = var_dump($model->upload());
+            }
             
-            // Second image
-            $model->file = UploadedFile::getInstance($model, 'extra1');
-            $model->file->saveAs( 'uploads/' . $uniq_id . '2.' . $model->file->extension );
-            // save the path in to Database
-            $model->extra1 = 'uploads/' . $uniq_id . "2." . $model->file->extension;
 
-            // Third image
-            $model->file = UploadedFile::getInstance($model, 'extra2');
-            $model->file->saveAs( 'uploads/' . $uniq_id . '3.' . $model->file->extension );
-            // save the path in to Database
-            $model->extra2 = 'uploads/' . $uniq_id . "3." . $model->file->extension;
-
-            // Fourth image
-            $model->file = UploadedFile::getInstance($model, 'extra3');
-            $model->file->saveAs( 'uploads/' . $uniq_id . '4.' . $model->file->extension );
-            // save the path in to Database
-            $model->extra3 = 'uploads/' . $uniq_id . "4." . $model->file->extension;
-
+            
             $model->user_id = Yii::$app->user->getId();
-            $model->save();
+            $model->save(false);
             return $this->redirect(['view', 'id' => $model->csdiary_id]);
         } else {
             return $this->render('create', [

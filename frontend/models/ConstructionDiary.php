@@ -3,7 +3,8 @@
 namespace frontend\models;
 
 use Yii;
-
+use yii\base\Model;
+use yii\web\UploadedFile;
 /**
  * This is the model class for table "construction_diary".
  *
@@ -32,9 +33,37 @@ use Yii;
  * @property ConstructionSite $csite
  * @property ConstructionSite $csiteName
  */
+
 class ConstructionDiary extends \yii\db\ActiveRecord
 {
-    public $file;
+    /**
+     * @var UploadedFile[]
+     */
+    public $imageFiles;
+
+    public function imgPath() {
+        $randomFileID = "id_" . rand(5000,5000000);
+        return $randomFileID;
+    }
+    public function upload()
+    {
+        foreach ($this->imageFiles as $file) {
+            $file->saveAs('uploads/' . $this->imgPath() . '.' . $file->extension);
+        }
+        return true;
+    }
+
+    public function uploadedImagesPath()
+    {
+        foreach ($this->imageFiles as $file) {
+            // save the path in to Database
+            $imagesArray[] = 'uploads/' . $this->imgPath() . '.' . $file->extension;
+        }
+
+        $imgPath = implode(",", $imagesArray); 
+        return $imgPath;
+    }
+
     /**
      * @inheritdoc
      */
@@ -54,7 +83,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
             [['user_id', 'csite_id'], 'integer'],
             [['description', 'issues'], 'string'],
             [['date'], 'safe'],
-            [['file'], 'file'],
+            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
             [['csite_name', 'weather', 'temperature', 'image', 'workers', 'extra1', 'extra2'], 'string', 'max' => 255],
             [['extra3', 'extra4', 'extra5', 'extra6', 'extra7', 'extra8', 'extra9'], 'string', 'max' => 500]
         ];
@@ -75,16 +104,17 @@ class ConstructionDiary extends \yii\db\ActiveRecord
             'description' => 'Description',
             'issues' => 'Issues',
             'workers' => 'Workers',
-            'image' => 'Image 1',
-            'extra1' => 'Image 2',
-            'extra2' => 'Image 3',
-            'extra3' => 'Image 4',
-            'extra4' => 'Extra4',
-            'extra5' => 'Extra5',
-            'extra6' => 'Extra6',
-            'extra7' => 'Extra7',
-            'extra8' => 'Extra8',
-            'extra9' => 'Extra9',
+            'imageFiles' => 'Images',
+            'image' => 'Images real',
+            'extra1' => 'Extra 1',
+            'extra2' => 'Extra 2',
+            'extra3' => 'Extra 3',
+            'extra4' => 'Extra 4',
+            'extra5' => 'Extra 5',
+            'extra6' => 'Extra 6',
+            'extra7' => 'Extra 7',
+            'extra8' => 'Extra 8',
+            'extra9' => 'Extra 9',
             'date' => 'Date',
         ];
     }

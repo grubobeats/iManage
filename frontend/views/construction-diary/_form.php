@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use frontend\models\ConstructionSite;
+use frontend\models\UploadForm;
 use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
@@ -15,9 +16,7 @@ use dosamigos\datepicker\DatePicker;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    
 
-    
 
     
 
@@ -66,10 +65,7 @@ use dosamigos\datepicker\DatePicker;
     </div>
     
 
-    <?= $form->field($model, 'image')->fileInput() ?>
-    <?= $form->field($model, 'extra1')->fileInput() ?>
-    <?= $form->field($model, 'extra2')->fileInput() ?>
-    <?= $form->field($model, 'extra3')->fileInput() ?>
+    <?= $form->field($model, 'imageFiles[]')->fileInput(['multiple' => true, 'accept' => 'image/*']) ?>
 
     <?= $form->field($model, 'workers')->textInput(['maxlength' => true]) ?>
 
