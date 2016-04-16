@@ -38,19 +38,15 @@ $this->params['breadcrumbs'][] = $this->title;
             'description:ntext',
             'issues:ntext',
             'workers',
-            'image',
-            'extra1',
-            [
-                'attribute'=>'extra2',
-                'format'=>'raw',
-                'value'=>Html::img($model->extra2, [ 'id' => "image_2", 'alt' => 'This is alt','width' => '150', 'vladan' => '123']),
-            ],
-            'extra3',
-
         ],
 
     ]) ?>
 
-    <?= DetailView::widget(['model' => $model, 'attributes' => ['extra3',],]) ?>
+    <?php
+        foreach (explode(',', $model->image) as $row)
+        {
+            echo Html::img(Yii::getAlias('@web') . '/' . $row, [ 'id' => $row, 'alt' => 'This is alt','width' => '150']);
+        }
+    ?>
 
 </div>

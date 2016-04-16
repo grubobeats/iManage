@@ -42,13 +42,15 @@ class ConstructionDiary extends \yii\db\ActiveRecord
     public $imageFiles;
 
     public function imgPath() {
-        $randomFileID = "id_" . rand(5000,5000000);
-        return $randomFileID;
+        date_default_timezone_set('Australia/Melbourne');
+        $date = date('m-d-Y_h-i-s', time());
+        return $date;
     }
+
     public function upload()
     {
         foreach ($this->imageFiles as $file) {
-            $file->saveAs('uploads/' . $this->imgPath() . '.' . $file->extension);
+            $file->saveAs('uploads/' . $this->imgPath() . '_' . $file->baseName . '.' . $file->extension);
         }
         return true;
     }
@@ -56,8 +58,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
     public function uploadedImagesPath()
     {
         foreach ($this->imageFiles as $file) {
-            // save the path in to Database
-            $imagesArray[] = 'uploads/' . $this->imgPath() . '.' . $file->extension;
+            $imagesArray[] = 'uploads/' . $this->imgPath() . '_' . $file->baseName . '.' . $file->extension;
         }
 
         $imgPath = implode(",", $imagesArray); 
