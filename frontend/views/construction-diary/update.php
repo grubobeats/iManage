@@ -18,4 +18,10 @@ $this->params['breadcrumbs'][] = 'Update';
         'model' => $model,
     ]) ?>
 
+    <?php
+        foreach (explode(',', $model->image) as $row)
+        {
+            echo Html::img(Yii::getAlias('@web') . '/' . $row, [ 'id' => $row, 'alt' => 'This is alt','width' => '150']);
+        }
+    ?>
 </div>

@@ -5,6 +5,7 @@ namespace frontend\models;
 use Yii;
 use yii\base\Model;
 use yii\web\UploadedFile;
+
 /**
  * This is the model class for table "construction_diary".
  *
@@ -84,7 +85,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
             [['user_id', 'csite_id'], 'integer'],
             [['description', 'issues'], 'string'],
             [['date'], 'safe'],
-            [['imageFiles'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg', 'maxFiles' => 4],
+            [['imageFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4],
             [['csite_name', 'weather', 'temperature', 'image', 'workers', 'extra1', 'extra2'], 'string', 'max' => 255],
             [['extra3', 'extra4', 'extra5', 'extra6', 'extra7', 'extra8', 'extra9'], 'string', 'max' => 500]
         ];
@@ -143,4 +144,6 @@ class ConstructionDiary extends \yii\db\ActiveRecord
     {
         return $this->hasOne(ConstructionSite::className(), ['csite_name' => 'csite_name']);
     }
+
+    
 }

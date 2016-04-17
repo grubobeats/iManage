@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'extra1',
                 // 'extra2',
                 [
-                    'attribute'=>'date',
+                    'attribute'=>'date:datetime',
                     'value'=>'date',
                     'format'=>'raw',
                     'contentOptions'=>['style'=>'width: 100px;'],
