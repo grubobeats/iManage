@@ -34,8 +34,6 @@ $globals = new Globals();
         'model' => $model,
 
         'attributes' => [
-            'extra3',
-            'csdiary_id',
             'csite_name',
             [
                 'attribute'=>'Company',
@@ -57,6 +55,7 @@ $globals = new Globals();
                 'attribute'=>'Country',
                 'value'=> $globals->getFromDB("csite_country" , "construction_site", "csite_id", $model->csite_id),
             ],
+            'extra3',
             'date:date',
             'weather',
             [

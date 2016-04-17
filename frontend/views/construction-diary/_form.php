@@ -23,13 +23,13 @@ use frontend\models\Globals;
             = ( SELECT max(csdiary_id) FROM `construction_diary`) 
             AND `user_id` = "' . Yii::$app->user->getId() . '" ',
         0) + 1;
-
+    // if needed, this returns today's date on formad d.m.Y
     $date_today = $globals->dateToday();
-    echo $date_today;
+
 ?>
 
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-10">
         <div class="construction-diary-form">
 
             <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
@@ -166,5 +166,8 @@ use frontend\models\Globals;
             <?php ActiveForm::end(); ?>
 
         </div>
+    </div>
+    <div class="col-sm-2">
+        <img src="http://demo.joomshaper.com/2012/neo/images/stories/demo/vertical-banner.jpg">
     </div>
 </div>

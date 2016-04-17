@@ -99,7 +99,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
         return [
             'csdiary_id' => 'Csdiary ID',
             'user_id' => 'User ID',
-            'csite_id' => 'Csite ID',
+            'csite_id' => 'Construction site',
             'csite_name' => 'Construction site',
             'weather' => 'Weather',
             'temperature' => 'Temperature',
