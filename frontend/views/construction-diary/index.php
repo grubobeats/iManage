@@ -34,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-
+                'extra3',
                 //'csdiary_id',
                 //'user_id',
                 //'csite_id',
@@ -48,17 +48,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 // 'extra1',
                 // 'extra2',
                 [
-                    'attribute'=>'date:datetime',
+                    'attribute'=>'date',
                     'value'=>'date',
                     'format'=>'raw',
-                    'contentOptions'=>['style'=>'width: 100px;'],
+                    'contentOptions'=>['style'=>'width: 200px;'],
                     'filter'=>DatePicker::widget([
                         'model' => $searchModel,
                         'attribute' => 'date',
                             'clientOptions' => [
                                 'autoclose' => true,
-                                'format' => 'yyyy-m-d'
-                            ]
+                                'format' => 'd.m.yyyy'
+                            ],
                     ]),
                 ],
                 //'date',

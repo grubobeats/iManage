@@ -34,8 +34,13 @@ $globals = new Globals();
         'model' => $model,
 
         'attributes' => [
+            'extra3',
             'csdiary_id',
             'csite_name',
+            [
+                'attribute'=>'Company',
+                'value'=> $globals->getFromDB("csite_company" , "construction_site", "csite_id", $model->csite_id),
+            ],
             [
                 'attribute'=>'Investitor',
                 'value'=> $globals->getFromDB("csite_investitor" , "construction_site", "csite_id", $model->csite_id),
@@ -54,10 +59,21 @@ $globals = new Globals();
             ],
             'date:date',
             'weather',
-            'temperature',
+            [
+                'attribute'=>'Temperature',
+                'value'=> $model->temperature . " degrees",
+            ],
             'description:ntext',
             'issues:ntext',
             'workers',
+            [
+                'attribute'=>'Started at time',
+                'value'=> $model->extra1 . " h",
+            ],
+            [
+                'attribute'=>'Finished at time',
+                'value'=> $model->extra2 . " h",
+            ],
             
         ],
 
@@ -66,7 +82,7 @@ $globals = new Globals();
     <?php
         foreach (explode(',', $model->image) as $row)
         {
-            echo Html::img(Yii::getAlias('@web') . '/' . $row, [ 'id' => $row, 'alt' => 'This is alt','width' => '150']);
+            echo Html::img(Yii::getAlias('@web') . '/' . $row, [ 'id' => $row, 'alt' => 'This is alt','width' => '150', 'style' => 'margin:20px; ', 'class' => 'text-center']);
         }
     ?>
 

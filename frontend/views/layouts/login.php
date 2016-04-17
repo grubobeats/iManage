@@ -21,15 +21,32 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <?php
+        $imageLink = "http://hdxwallpaperz.com/wp-content/uploads/2016/02/Architectural-Wallpaper-HjUh0.jpg";
+    ?>
+    <style>
+
+        .wrap {
+            background-image: url("<?php echo $imageLink; ?>");
+            background-repeat: no-repeat;
+            background-size: 100vw;
+        }
+        .login {
+            text-align: center;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid black;
+        }
+
+
+    </style>
 </head>
 <body>
 <?php $this->beginBody() ?>
 
 <div class="wrap">
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>

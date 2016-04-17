@@ -82,12 +82,12 @@ class ConstructionDiary extends \yii\db\ActiveRecord
         return [
             // Vladan, don't forget to fix required fields!
             [['user_id', 'csite_id'], 'required'],
-            [['user_id', 'csite_id'], 'integer'],
+            [['user_id', 'csite_id', 'workers', 'temperature', 'extra3'], 'integer'],
             [['description', 'issues'], 'string'],
             [['date'], 'safe'],
             [['imageFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg', 'maxFiles' => 4],
-            [['csite_name', 'weather', 'temperature', 'image', 'workers', 'extra1', 'extra2'], 'string', 'max' => 255],
-            [['extra3', 'extra4', 'extra5', 'extra6', 'extra7', 'extra8', 'extra9'], 'string', 'max' => 500]
+            [['csite_name', 'weather', 'image', 'extra1', 'extra2'], 'string', 'max' => 255],
+            [['extra4', 'extra5', 'extra6', 'extra7', 'extra8', 'extra9'], 'string', 'max' => 500]
         ];
     }
 
@@ -100,7 +100,7 @@ class ConstructionDiary extends \yii\db\ActiveRecord
             'csdiary_id' => 'Csdiary ID',
             'user_id' => 'User ID',
             'csite_id' => 'Csite ID',
-            'csite_name' => 'Csite Name',
+            'csite_name' => 'Construction site',
             'weather' => 'Weather',
             'temperature' => 'Temperature',
             'description' => 'Description',
@@ -108,9 +108,9 @@ class ConstructionDiary extends \yii\db\ActiveRecord
             'workers' => 'Workers',
             'imageFiles' => 'Images',
             'image' => 'Images real',
-            'extra1' => 'Extra 1',
-            'extra2' => 'Extra 2',
-            'extra3' => 'Extra 3',
+            'extra1' => 'Started at',
+            'extra2' => 'Finished at',
+            'extra3' => 'Day',
             'extra4' => 'Extra 4',
             'extra5' => 'Extra 5',
             'extra6' => 'Extra 6',
