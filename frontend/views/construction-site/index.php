@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\base\Controller;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\ConstructionSiteSearch */
@@ -21,6 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Create Construction Site', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
+    <?php 
+
+    //var_dump($this->renderPartial( "construction-site" )); ?>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -39,6 +44,8 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+
+
 
     <?php
 } else {

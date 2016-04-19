@@ -3,17 +3,16 @@
 namespace frontend\controllers;
 
 use Yii;
-use frontend\models\ConstructionSite;
-use frontend\models\ConstructionSiteSearch;
+use frontend\models\Payments;
+use frontend\models\PaymentsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\data\ActiveDataProvider;
 
 /**
- * ConstructionSiteController implements the CRUD actions for ConstructionSite model.
+ * PaymentsController implements the CRUD actions for Payments model.
  */
-class ConstructionSiteController extends Controller
+class PaymentsController extends Controller
 {
     public function behaviors()
     {
@@ -28,20 +27,13 @@ class ConstructionSiteController extends Controller
     }
 
     /**
-     * Lists all ConstructionSite models.
+     * Lists all Payments models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $user_id = "";
-        if (Yii::$app->user->getId()) { $user_id .= Yii::$app->user->getId(); } else { $user_id .= 0; }
-
-        $searchModel = new ConstructionSiteSearch();
+        $searchModel = new PaymentsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider = $searchModel->search(\yii\helpers\ArrayHelper::merge(
-            Yii::$app->request->queryParams,
-            [$searchModel->formName() => ['user_id' => $user_id]]
-        ));
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -50,7 +42,7 @@ class ConstructionSiteController extends Controller
     }
 
     /**
-     * Displays a single ConstructionSite model.
+     * Displays a single Payments model.
      * @param integer $id
      * @return mixed
      */
@@ -62,18 +54,18 @@ class ConstructionSiteController extends Controller
     }
 
     /**
-     * Creates a new ConstructionSite model.
+     * Creates a new Payments model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new ConstructionSite();
+        $model = new Payments();
 
-        if ($model->load(Yii::$app->request->post()) ) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->user_id = Yii::$app->user->getId();
             $model->save();
-            return $this->redirect(['view', 'id' => $model->csite_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -82,7 +74,7 @@ class ConstructionSiteController extends Controller
     }
 
     /**
-     * Updates an existing ConstructionSite model.
+     * Updates an existing Payments model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -92,7 +84,7 @@ class ConstructionSiteController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->csite_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -101,7 +93,7 @@ class ConstructionSiteController extends Controller
     }
 
     /**
-     * Deletes an existing ConstructionSite model.
+     * Deletes an existing Payments model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -114,15 +106,15 @@ class ConstructionSiteController extends Controller
     }
 
     /**
-     * Finds the ConstructionSite model based on its primary key value.
+     * Finds the Payments model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return ConstructionSite the loaded model
+     * @return Payments the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = ConstructionSite::findOne($id)) !== null) {
+        if (($model = Payments::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

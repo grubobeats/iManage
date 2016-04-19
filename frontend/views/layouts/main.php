@@ -38,13 +38,15 @@ AppAsset::register($this);
         ['label' => 'Home', 'url' => ['/site/index']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
-        ['label' => 'Construction Site', 'url' => ['/construction-site']],
-        ['label' => 'Construction Diary', 'url' => ['/construction-diary']],
+        
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'Construction Diary', 'url' => ['/construction-diary']];
+        $menuItems[] = ['label' => 'Construction Site', 'url' => ['/construction-site']];
+        $menuItems[] = ['label' => 'Payments', 'url' => ['/payments']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
